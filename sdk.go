@@ -45,7 +45,7 @@ func NewClient(httpClient *http.Client, checker ResponseChecker) *Client {
   abcdefg
   abcdefg
   abcdefg
-  abcdefg
+  abcdefx
   abcdefg
   abcdefg
   abcdefg
