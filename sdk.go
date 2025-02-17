@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/google/go-querystring/query"
+	"github.com/google/uuid"
 )
 
 type ResponseChecker func(*http.Response) error
@@ -121,6 +122,14 @@ func (c *Client) NewRequest(method, path string, opt interface{}, options []Opti
 	}
 
 	req.Header.Set("Accept", "application/json")
+
+	// Get logid from context, otherwise generate a new one
+	logID := req.Context().Value("logid")
+	if logID == nil {
+		logID = uuid.New().String()
+	}
+	req.Header.Set("X-TT-LOGID", logID.(string))
+
 	return req, nil
 }
 
